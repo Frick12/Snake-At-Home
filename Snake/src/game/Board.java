@@ -12,9 +12,10 @@
 	import java.awt.event.ActionListener;
 	import java.awt.event.KeyAdapter;
 	import java.awt.event.KeyEvent;
+import java.io.IOException;
 
-	import javax.swing.ImageIcon;
-	import javax.swing.JPanel;
+import javax.imageio.ImageIO;
+import javax.swing.JPanel;
 	import javax.swing.Timer;
 
 	public class Board extends JPanel implements ActionListener {
@@ -48,7 +49,7 @@
 	    private Image apple;
 	    private Image head;
 
-	    public Board() {
+	    public Board() throws IOException {
 
 	        addKeyListener(new TAdapter());
 	        setBackground(Color.black);
@@ -59,16 +60,13 @@
 	        initGame();
 	    }
 
-	    private void loadImages() {
+	    private void loadImages() throws IOException {
 
-	        ImageIcon iid = new ImageIcon("dotBody.png");
-	        ball = iid.getImage();
-
-	        ImageIcon img = new ImageIcon("dotFood.png");
-	        apple = img.getImage();
-
-	        ImageIcon iih = new ImageIcon("dotBody.png");
-	        head = iih.getImage();
+	       ball = ImageIO.read(getClass().getResource("dotBody.png"));
+	        
+	       apple = ImageIO.read(getClass().getResource("dotFood.png"));
+	        
+	       head = ImageIO.read(getClass().getResource("dotBody.png"));
 	    }
 
 	    private void initGame() {

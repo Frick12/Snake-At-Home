@@ -1,12 +1,14 @@
 package game;
 
 import java.awt.EventQueue;
+import java.io.IOException;
+
 import javax.swing.JFrame;
 
 
 public class Snake extends JFrame {
 
-	public Snake() {
+	public Snake() throws IOException {
 
         add(new Board());
         
@@ -24,7 +26,12 @@ public class Snake extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {                
-                JFrame ex = new Snake();
+                JFrame ex = null;
+				try {
+					ex = new Snake();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
                 ex.setVisible(true);                
             }
         });
